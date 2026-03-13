@@ -84,9 +84,27 @@ def actualizar_empresa():
 def eliminar_empresa():
     ruc = input("INGRESE RUC DE LA EMPRESA A ELIMINAR : ")
     if ruc in empresas:
-        del empresas[ruc]
-        guardar_datos(empresas)
-        titulo("EMPRESA ELIMINADA CON ÉXITO")
+        print()
+        print(f"EMPRESA ENCONTRADA : {empresas[ruc]['razon_social']}")
+        print()
+        print("[1] SI, ELIMINAR")
+        print("[2] NO, CANCELAR")
+        
+        try:
+            opcion = int(input("ESTA SEGURO QUE DESEA ELIMINAR ESTA EMPRESA? : "))
+        except ValueError:
+            print("OPCIÓN NO VÁLIDA. CANCELANDO ELIMINACIÓN.")
+            return
+        
+        if opcion == 1:
+            del empresas[ruc]
+            guardar_datos(empresas)
+            titulo("EMPRESA ELIMINADA CON ÉXITO")
+        elif opcion == 2:
+            print("OPERACIÓN CANCELADA.")
+        else:
+            print("OPCIÓN NO VÁLIDA. CANCELANDO ELIMINACIÓN.")
+            
     else:
         print("RUC NO ENCONTRADO.")
 
