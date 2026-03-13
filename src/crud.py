@@ -13,10 +13,12 @@ def registrar_empresa():
         "razon_social" : razon_social,
         "direccion" : direccion
     }
-    titulo("EMPRESA REGISTRADA CON ÉXITO")    
+    guardar_datos(empresas)
+    titulo("EMPRESA REGISTRADA CON ÉXITO")
+     
     
 @pantalla("MOSTRAR EMPRESAS")
-def mostrar_alumnos():
+def mostrar_empresas():
     for ruc,info in empresas.items():
         print(f"RUC : {ruc}")
         print(f"RAZON_SOCIAL : {info['razon_social']}")
@@ -33,6 +35,7 @@ def actualizar_empresa():
             "razon_social" : razon_social,
             "direccion" : direccion
         }
+        guardar_datos(empresas)
         titulo("EMPRESA ACTUALIZADA CON ÉXITO")
     else:
         print("RUC NO ENCONTRADO.")
@@ -42,6 +45,7 @@ def eliminar_empresa():
     ruc = input("INGRESE RUC DE LA EMPRESA A ELIMINAR : ")
     if ruc in empresas:
         del empresas[ruc]
+        guardar_datos(empresas)
         titulo("EMPRESA ELIMINADA CON ÉXITO")
     else:
         print("RUC NO ENCONTRADO.")

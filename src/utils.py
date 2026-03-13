@@ -4,7 +4,7 @@ ANCHO = 50
 
 
 def limpiar():
-    os.system("clear")
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def pausa():
