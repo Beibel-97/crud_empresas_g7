@@ -13,5 +13,5 @@ def pausa():
 
 def titulo(texto):
     print("=" * ANCHO)
-    print(" " * 10 + texto)
+    print(texto.center(ANCHO))
     print("=" * ANCHO)

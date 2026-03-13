@@ -6,8 +6,17 @@ from src.decoradores import pantalla
 @pantalla("REGISTRAR EMPRESA")
 def registrar_empresa():
     ruc = input("INGRESE RUC : ")
+    
+    if ruc in empresas:
+        print("YA EXISTE UNA EMPRESA CON ESE RUC.")
+        return
+    
     razon_social = input("INGRESE RAZON SOCIAL : ")
     direccion = input("INGRESE DIRECCIÓN : ")
+    
+    if not ruc or not razon_social or not direccion:
+        print("TODOS LOS CAMPOS SON OBLIGATORIOS.")
+        return
     
     empresas[ruc] = {
         "razon_social" : razon_social,
@@ -19,11 +28,42 @@ def registrar_empresa():
     
 @pantalla("MOSTRAR EMPRESAS")
 def mostrar_empresas():
-    for ruc,info in empresas.items():
-        print(f"RUC : {ruc}")
-        print(f"RAZON_SOCIAL : {info['razon_social']}")
-        print(f"DIRECCIÓN : {info['direccion']}")
-        print("*" * 50)
+    if not empresas:
+        print("NO HAY EMPRESAS REGISTRADAS.")
+        return
+    
+    print("""
+        [1] MOSTRAR TODAS LAS EMPRESAS
+        [2] BUSCAR POR RUC    
+    """)
+    
+    try:
+        opcion = int(input("INGRESE OPCIÓN : "))
+    except ValueError:
+        print("OPCIÓN NO VÁLIDA")
+        return
+    
+    if opcion == 1:
+        print()
+        for ruc,info in empresas.items():
+            print(f"RUC : {ruc}")
+            print(f"RAZON_SOCIAL : {info['razon_social']}")
+            print(f"DIRECCIÓN : {info['direccion']}")
+            print("=" * 50)
+    elif opcion == 2:
+        ruc = input("INGRESE RUC A BUSCAR : ")
+        if ruc in empresas:
+            info = empresas[ruc]
+            print()
+            print(f"RUC : {ruc}")
+            print(f"RAZON_SOCIAL : {info['razon_social']}")
+            print(f"DIRECCIÓN : {info['direccion']}")
+            print("=" * 50)
+        else:
+            print("EMPRESA NO ENCONTRADA.")
+    else:
+        print("OPCIÓN NO VÁLIDA.")      
+    
         
 @pantalla("ACTUALIZAR EMPRESA")
 def actualizar_empresa():
@@ -61,8 +101,14 @@ def menu_principal():
             [4] ELIMINAR EMPRESA
             [5] SALIR
         """)
+        print("=" * 50)
         
-        opcion = int(input("INGRESE OPCIÓN : "))
+        try:
+            opcion = int(input("INGRESE OPCIÓN : "))
+        except ValueError:
+            print("OPCIÓN NO VÁLIDA. DEBE INGRESAR UN NÚMERO.")
+            pausa()
+            continue
         
         if opcion == 1:
             registrar_empresa()
