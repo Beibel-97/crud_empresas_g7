@@ -1,4 +1,4 @@
-from src.utils import limpiar,titulo,pausa
+from src.utils import limpiar,titulo
 
 def pantalla(nombre_pantalla):
     def decorador(func):

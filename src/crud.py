@@ -4,8 +4,16 @@ from src.utils import pausa,titulo,limpiar
 from src.decoradores import pantalla
 
 @pantalla("REGISTRAR EMPRESA")
-def registrar_alumno():
-    pass
+def registrar_empresa():
+    ruc = input("INGRESE RUC : ")
+    razon_social = input("INGRESE RAZON SOCIAL : ")
+    direccion = input("INGRESE DIRECCIÓN : ")
+    
+    empresas[ruc] = {
+        "razon_social" : razon_social,
+        "direccion" : direccion
+    }
+    titulo("EMPRESA REGISTRADA CON ÉXITO")    
     
 @pantalla("MOSTRAR EMPRESAS")
 def mostrar_alumnos():
@@ -16,20 +24,35 @@ def mostrar_alumnos():
         print("*" * 50)
         
 @pantalla("ACTUALIZAR EMPRESA")
-def actualizar_alumno():
-    pass
+def actualizar_empresa():
+    ruc = input("INGRESE RUC DE LA EMPRESA A ACTUALIZAR : ")
+    if ruc in empresas:
+        razon_social = input("INGRESE NUEVA RAZON SOCIAL : ")
+        direccion = input("INGRESE NUEVA DIRECCIÓN : ")
+        empresas[ruc] = {
+            "razon_social" : razon_social,
+            "direccion" : direccion
+        }
+        titulo("EMPRESA ACTUALIZADA CON ÉXITO")
+    else:
+        print("RUC NO ENCONTRADO.")
         
 @pantalla("ELIMINAR EMPRESA")
-def eliminar_alumno():
-    pass
-        
+def eliminar_empresa():
+    ruc = input("INGRESE RUC DE LA EMPRESA A ELIMINAR : ")
+    if ruc in empresas:
+        del empresas[ruc]
+        titulo("EMPRESA ELIMINADA CON ÉXITO")
+    else:
+        print("RUC NO ENCONTRADO.")
+
 def menu_principal():
     while True:
         limpiar()
         titulo("CRUD DE EMPRESAS")
         print("""
             [1] REGISTRAR EMPRESA
-            [2] MOSTRAR EMPRESA
+            [2] MOSTRAR EMPRESAS
             [3] ACTUALIZAR EMPRESA
             [4] ELIMINAR EMPRESA
             [5] SALIR
@@ -38,16 +61,16 @@ def menu_principal():
         opcion = int(input("INGRESE OPCIÓN : "))
         
         if opcion == 1:
-            registrar_alumno()
+            registrar_empresa()
             pausa()
         elif opcion == 2:
-            mostrar_alumnos()
+            mostrar_empresas()
             pausa()
         elif opcion == 3:
-            actualizar_alumno()
+            actualizar_empresa()
             pausa()
         elif opcion == 4:
-            eliminar_alumno()
+            eliminar_empresa()
             pausa()
         elif opcion == 5:
             guardar_datos(empresas)

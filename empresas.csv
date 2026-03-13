@@ -1,4 +1,8 @@
-dni,nombre,email
-12345678,Juan Perez,juanperez@gmail.com
-10010010,Ana Lopez,anita@google.com
-23423,cesar mayta,cesar@gmail.com
+ruc,razon_social,direccion
+20100070970,SUPERMERCADOS PERUANOS S.A.,Av. Angamos Este 1805 Surquillo Lima
+20100128218,UNION DE CERVECERIAS PERUANAS BACKUS Y JOHNSTON S.A.A.,Av. Nicolas Ayllon 3986 Ate Lima
+20100047218,SAGA FALABELLA S.A.,Av. Paseo de la Republica 3220 San Isidro Lima
+20505403487,TIENDAS POR DEPARTAMENTO RIPLEY S.A.C.,Av. Paseo de la Republica 3118 San Isidro Lima
+20536557858,AMERICA MOVIL PERU S.A.C.,Av. El Derby 254 Santiago de Surco Lima
+20493936361,RANSA COMERCIAL S.A.C.,Av. Nestor Gambetta 3233 Callao
+20612098884,GRUPO DE EMPRESAS PERUANAS E.I.R.L.,Calle German Carrasco 1942 Lima
